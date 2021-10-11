@@ -40,4 +40,5 @@ apt update
 apt dist-upgrade
 update-grub
 ```
+当执行`apt update`可能会出现无法获取仓库源的情况，这是由于live系统未激活导致，但是一般会出现`dpkg --configure -a`的提示，此时使用该命令再次更新即可。
 9. 至此，UOS系统已经成功进行再次更新，然后按`ctrl+d`退出chroot环境，最后使用`sudo reboot`重启系统进行UOS就可以查看是否正常了
