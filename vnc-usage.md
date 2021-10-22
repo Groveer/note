@@ -13,7 +13,7 @@ archlinux可以使用pacman或yay进行安装：
 sudo pacman -S x11vnc
 ```
 
-### 设置并存储vnc，这里设置为`123456`，需要什么密码只需要把`123456`改为对应的字符串就行。
+### 设置并存储vnc，这里设置为`deepin`，需要什么密码只需要把`deepin`改为对应的字符串就行。
 ```
 sudo x11vnc -storepasswd deepin /etc/x11vnc.pass
 ```
