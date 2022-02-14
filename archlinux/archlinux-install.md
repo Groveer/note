@@ -1,4 +1,4 @@
-# Arch Linux(UEFI with GPT)安装
+# Arch Linux(MBR and UEFI)安装
 
 确认主板系统是UEFI,这里使用GPT分区格式，关于究竟该使用MBR还是GPT请参考[这里](https://wiki.archlinux.org/title/Partitioning_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)#%E9%80%89%E6%8B%A9_GPT_%E8%BF%98%E6%98%AF_MBR)。
 
