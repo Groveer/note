@@ -1,7 +1,5 @@
 # Arch Linux安装后配置
 
-[TOC]
-
 ## 配置源
 
 ### 添加`archlinuxcn`仓库
@@ -127,4 +125,30 @@ source ~/bash_profile
 4. 配置GOPROXY
 ```
 go env -w GOPROXY=https://goproxy.io,direct
+```
+
+## 安装KDE桌面环境
+
+1. 最小化安装：
+```
+sudo pacman -S plasma-desktop
+sudo pacman -S plasma-nm plasma-pa kscreen bluedevil powerdevil kwalletmanager konsole
+```
+`plasma-desktop`：基本的KDE桌面环境</br>
+`plasma-nm`：网络管理模块，右下角的网络连接以及系统设置中的网络设置</br>
+`plasma-pa`：声音模块，右下角的声音设置以及系统设置中的音频设置</br>
+`kscreen`：屏幕管理模块，系统设置中的显示器配置</br>
+`bluedevil`：蓝牙模块，启用需`systemctl enable bluetooth`</br>
+`powerdevil`：电源管理模块，系统设置中的电源管理</br>
+`kwalletmanager`：KDE 钱包管理，一般用来禁用电子钱包</br>
+`konsole`：KDE 的仿真终端</br>
+2. 基本安装：</br>
+基本安装并不代表最小化安装，基本安装会附带很多程序，如桌面小工具、discover等
+```
+sudo pacman -S plasma
+```
+3. 安装KDE应用：
+注意，这仅仅安装应用程序，并不会安装 Plasma 桌面。
+```
+sudo pacman -S kde-applications
 ```
