@@ -49,7 +49,7 @@
 * 分区创建</br>
     1扇区 = 512字节</br>
     `fdisk /dev/sda`</br>
-  1. 新建 EFI System 分区</br>
+  1. 新建 EFI System 分区（非UEFI引导可以省略此步）</br>
      1. 输入`n`
      2. 选择分区区号，直接`Enter`，使用默认值，fdisk 会自动递增分区号
      3. 分区开始扇区号，直接`Enter`，使用默认值
@@ -65,7 +65,7 @@
      5. 输入`t`修改刚刚创建的分区类型
      6. 选择分区号，直接`Enter`， 使用默认值，fdisk 会自动选择刚刚新建的分区
      7. 输入`23`，使用 Linux root (x86-64) 类型
-  3. 新建 Linux swap 分区
+  3. 新建 Linux swap 分区（使用[交换文件](https://wiki.archlinux.org/title/Swap_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)#%E4%BA%A4%E6%8D%A2%E6%96%87%E4%BB%B6)可以省略此步）
      1. 输入`n`
      2. 选择分区区号，直接`Enter`，使用默认值，fdisk 会自动递增分区号
      3. 分区开始扇区号，直接 Enter，使用默认值
@@ -101,11 +101,16 @@
 
 在这里需要将除 swap 分区外，其他分区都挂上去，注意先后顺序不能错</br>
 ```
-mount /dev/sda2 /mnt`
-mkdir /mnt/boot`
+mount /dev/sda2 /mnt
+mkdir /mnt/boot
 mkdir /mnt/home
 mount /dev/sda1 /mnt/boot
 mount /dev/sdb1 /mnt/home
+```
+交换分区启用:</br>
+```
+mkswap /dev/sda3
+swapon /dev/sda3
 ```
 
 ## 配置 pacman mirror
@@ -160,9 +165,16 @@ mount /dev/sdb1 /mnt/home
 
 ## 安装 GRUB
 
+MBR引导：
 ```
 pacman -S grub
-pacman -S efibootmgr
+grub-install --target=i386-pc /dev/sda
+grub-mkconfig -o /boot/grub/grub.cfg
+```
+
+UEFI引导：
+```
+pacman -S grub efibootmgr
 grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=grub
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
@@ -176,6 +188,7 @@ reboot
 
 ## 重启后的设置
 
+使用root账户登录后：
 * 开启时间自动同步
   ```
   timedatectl set-ntp true
