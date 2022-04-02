@@ -14,26 +14,27 @@
 Include = /etc/pacman.d/archlinux-mirrorlist
 ```
 3. 安装 GPG key：
-```
+```shell
 sudo pacman -Syu
 sudo pacman -S archlinuxcn-keyring
 ```
+若安装失败，可以参考[GnuPG-2.1 与 pacman 密钥环](https://www.archlinuxcn.org/gnupg-2-1-and-the-pacman-keyring/)重新生成密钥环。
 ### 配置[aur](https://wiki.archlinux.org/title/Arch_User_Repository_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87))
-```
+```shell
 sudo pacman -S yay
 ```
 以后就可以使用`yay`代替`pacman`了，语法完全一致，无需提前`sudo`，并且可访问`aur`仓库。
 
 ## 配置控制台登录图形桌面
 
+### 配置X11环境
 1. 安装[xorg](https://wiki.archlinux.org/title/Xorg_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87))：
-```
-sudo pacman -S xorg-server xorg-xinit
+```shell
+yay -S xorg-server xorg-xinit
 ```
 2. 修改`～/.xinitrc`文件，并添加内容，挑选自己的桌面环境添加：
 ```
 exec startplasma-x11       (kde-x11)
-exec startplasma-wayland   (kde-wayland)
 exec startdde              (dde)
 exec gnome-session         (gnome)
 exec openbox-session       (openbox)
@@ -47,18 +48,54 @@ if [[ -z $DISPLAY && $(tty) == /dev/tty1 ]]; then
 fi
 ```
 
+### 配置Wayland环境
+wayland本身只是个协议，并不提供图形环境，因此需要安装混合器或直接安装有内置混合器的桌面环境
+1. KDE桌面环境
+```shell
+yay -S plasma-desktop plasma-wayland-session
+dbus-run-session startplasma-wayland
+```
+2、Gnome桌面环境
+```
+yay -S gnome-shell
+gnome-shell --wayland
+```
+
+其他桌面环境自行搜索：[wayland](https://wiki.archlinux.org/title/Wayland)
+
+注意：某些应用程序是支持wayland协议，但是默认却走的xwayland，导致显示效果很不理想，可以设置环境变量或配置文件使其走wayland协议
+1. Firefox：
+环境变量：
+```
+MOZ_ENABLE_WAYLAND=1
+```
+2. Chromium：
+在`~/.config/chromium-flags.conf`中，添加以下几行:
+```
+--enable-features=UseOzonePlatform
+--ozone-platform=wayland
+```
+3. qt程序：
+需要额外安装：
+```shell
+yay -S qt5-wayland qt6-wayland
+```
+然后每次启动程序添加参数：`-platform wayland`
+或直接设置`QT_QPA_PLATFORM=wayland`，这样就不必每次添加参数
+
+
 ## 安装[oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh)及插件
 
 1. 安装必备工具：
-```
-sudo pacman -S git wget
+```shell
+yay -S git wget
 ```
 2. 安装`oh-my-zsh`：
-```
+```shell
 sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 3. 安装历史记录插件和语法检查插件
-```
+```shell
 cd ~/.oh-my-zsh/plugins
 git clone git://github.com/zsh-users/zsh-autosuggestions.git
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
@@ -73,15 +110,15 @@ plugins=(
 )
 ```
 5. 使插件生效：
-```
+```shell
 source ~/.zshrc
 ```
 
 ## 安装输入法
 
 1. 安装[fcitx5](https://wiki.archlinux.org/title/Fcitx5_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87))：
-```
-sudo pacman -S fcitx5 fcitx5-chinese-addons
+```shell
+yay -S fcitx5 fcitx5-chinese-addons
 ```
 2. 配置环境变量`~/.pam_environment`：
 ```
@@ -96,43 +133,43 @@ GLFW_IM_MODULE DEFAULT=ibus
 ## 配置开发环境
 ### python
 1. 下载pip
-```
-sudo pacman -S python-pip
+```shell
+yay -S python-pip
 ```
 2. 设置pip源
-```
+```shell
 pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
 ```
 ### golang
 1. 安装[go](https://wiki.archlinux.org/title/Go_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87))：
-```
-sudo pacman -S go
+```shell
+yay -S go
 ```
 2. 选择一个go工作目录，以`～/Develop/go`为例，新建三个目录：
-```
+```shell
 mkdir -p ~/Develop/{src,bin.pkg}
 ```
 3. 配置环境变量`~/bash_profile`：
-```
+```shell
 export GOROOT=/usr/lib/go
 export GOPATH=~/Develop/go		   # 这两行你需要
 export GOBIN=~/Develop/go/bin		# 修改为自己的
 export PATH=$PATH:$GOROOT/bin:$GOBIN
 ```
-```
+```shell
 source ~/bash_profile
 ```
 4. 配置GOPROXY
-```
+```shell
 go env -w GOPROXY=https://goproxy.io,direct
 ```
 
 ## 安装KDE桌面环境
 
 1. 最小化安装：
-```
-sudo pacman -S plasma-desktop
-sudo pacman -S plasma-nm plasma-pa kscreen bluedevil powerdevil kwalletmanager konsole
+```shell
+yay -S plasma-desktop
+yay -S plasma-nm plasma-pa kscreen bluedevil powerdevil kwalletmanager konsole
 ```
 `plasma-desktop`：基本的KDE桌面环境</br>
 `plasma-nm`：网络管理模块，右下角的网络连接以及系统设置中的网络设置</br>
@@ -144,11 +181,11 @@ sudo pacman -S plasma-nm plasma-pa kscreen bluedevil powerdevil kwalletmanager k
 `konsole`：KDE 的仿真终端</br>
 2. 基本安装：</br>
 基本安装并不代表最小化安装，基本安装会附带很多程序，如桌面小工具、discover等
-```
-sudo pacman -S plasma
+```shell
+yay -S plasma
 ```
 3. 安装KDE应用：
 注意，这仅仅安装应用程序，并不会安装 Plasma 桌面。
-```
-sudo pacman -S kde-applications
+```shell
+yay -S kde-applications
 ```
