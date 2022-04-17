@@ -10,7 +10,7 @@
 取消注释 `#Color`</br>
 添加内容：
 ```
-[archlinux]
+[archlinuxcn]
 Include = /etc/pacman.d/archlinux-mirrorlist
 ```
 3. 安装 GPG key：
@@ -53,7 +53,7 @@ wayland本身只是个协议，并不提供图形环境，因此需要安装混�
 1. KDE桌面环境
 ```shell
 yay -S plasma-desktop plasma-wayland-session
-dbus-run-session startplasma-wayland
+startplasma-wayland
 ```
 2、Gnome桌面环境
 ```
@@ -74,6 +74,7 @@ MOZ_ENABLE_WAYLAND=1
 ```
 --enable-features=UseOzonePlatform
 --ozone-platform=wayland
+--enable-features=WebRTCPipeWireCapturer
 ```
 3. qt程序：
 需要额外安装：
@@ -91,13 +92,22 @@ yay -S qt5-wayland qt6-wayland
 yay -S git wget
 ```
 2. 安装`oh-my-zsh`：
+创建文件`install.sh`并写入以下链接中的内容：
+```
+https://gitee.com/mirrors/oh-my-zsh/blob/master/tools/install.sh
+```
+添加可执行权限：
 ```shell
-sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+chmod +x install.sh
+```
+执行脚本进行安装：
+```shell
+./install.sh
 ```
 3. 安装历史记录插件和语法检查插件
 ```shell
 cd ~/.oh-my-zsh/plugins
-git clone git://github.com/zsh-users/zsh-autosuggestions.git
+git clone https://github.com/zsh-users/zsh-autosuggestions.git
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
 ```
 4. 修改`～/.zshrc`文件，找到`plugins=(git)`，改为：
@@ -120,7 +130,7 @@ source ~/.zshrc
 ```shell
 yay -S fcitx5 fcitx5-chinese-addons
 ```
-2. 配置环境变量`~/.pam_environment`：
+2. 配置环境变量`/etc/environment`：
 ```
 GTK_IM_MODULE DEFAULT=fcitx
 QT_IM_MODULE  DEFAULT=fcitx
