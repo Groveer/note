@@ -120,7 +120,7 @@ swapon /dev/sda3
 
 ## 安装 Arch 和 Package Group
 
-`pacstrap /mnt base base-devel linux linux-firmware mkinitcpio-firmware`
+`pacstrap /mnt base base-devel linux linux-firmware`
 
 ## 生成 fstab 文件
 
