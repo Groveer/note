@@ -24,8 +24,8 @@ sudo pacman -S archlinuxcn-keyring
 sudo pacman -S yay
 ```
 以后就可以使用`yay`代替`pacman`了，语法完全一致，无需提前`sudo`，并且可访问`aur`仓库。
-4. 安装扩展固件
-为了让电脑充分发挥性能，在配置`archlinuxcn`仓库后，应安装扩展固件：
+### 安装扩展固件
+为了让电脑充分发挥性能，在配置`aur`仓库后，应安装扩展固件：
 ```shell
 yay -S mkinitcpio-firmware
 ```
@@ -186,15 +186,15 @@ go env -w GOPROXY=https://goproxy.io,direct
 yay -S plasma-desktop
 yay -S plasma-nm plasma-pa kscreen bluedevil powerdevil kwalletmanager konsole
 ```
-`plasma-desktop`：基本的KDE桌面环境</br>
-`plasma-nm`：网络管理模块，右下角的网络连接以及系统设置中的网络设置</br>
-`plasma-pa`：声音模块，右下角的声音设置以及系统设置中的音频设置</br>
-`kscreen`：屏幕管理模块，系统设置中的显示器配置</br>
-`bluedevil`：蓝牙模块，启用需`systemctl enable bluetooth`</br>
-`powerdevil`：电源管理模块，系统设置中的电源管理</br>
-`kwalletmanager`：KDE 钱包管理，一般用来禁用电子钱包</br>
-`konsole`：KDE 的仿真终端</br>
-2. 基本安装：</br>
+`plasma-desktop`：基本的KDE桌面环境<br>
+`plasma-nm`：网络管理模块，右下角的网络连接以及系统设置中的网络设置<br>
+`plasma-pa`：声音模块，右下角的声音设置以及系统设置中的音频设置<br>
+`kscreen`：屏幕管理模块，系统设置中的显示器配置<br>
+`bluedevil`：蓝牙模块，启用需`systemctl enable bluetooth`<br>
+`powerdevil`：电源管理模块，系统设置中的电源管理<br>
+`kwalletmanager`：KDE 钱包管理，一般用来禁用电子钱包<br>
+`konsole`：KDE 的仿真终端<br>
+2. 基本安装：<br>
 基本安装并不代表最小化安装，基本安装会附带很多程序，如桌面小工具、discover等
 ```shell
 yay -S plasma
