@@ -24,6 +24,11 @@ sudo pacman -S archlinuxcn-keyring
 sudo pacman -S yay
 ```
 以后就可以使用`yay`代替`pacman`了，语法完全一致，无需提前`sudo`，并且可访问`aur`仓库。
+4. 安装扩展固件
+为了让电脑充分发挥性能，在配置`archlinuxcn`仓库后，应安装扩展固件：
+```shell
+yay -S mkinitcpio-firmware
+```
 
 ## 配置控制台登录图形桌面
 
@@ -128,7 +133,7 @@ source ~/.zshrc
 
 1. 安装[fcitx5](https://wiki.archlinux.org/title/Fcitx5_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87))：
 ```shell
-yay -S fcitx5 fcitx5-chinese-addons
+yay -S fcitx5 fcitx5-chinese-addons fcitx5-gtk fcitx5-configtool
 ```
 2. 配置环境变量`/etc/environment`：
 ```
