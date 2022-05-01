@@ -97,9 +97,20 @@ yay -S qt5-wayland qt6-wayland
 yay -S git wget
 ```
 2. 安装`oh-my-zsh`：
-创建文件`install.sh`并写入以下链接中的内容：
+创建文件`install.sh`并写入以下[链接](https://gitee.com/mirrors/oh-my-zsh/blob/master/tools/install.sh
+)中的内容<br>
+修改以下内容：
+```shell
+# Default settings
+ZSH=${ZSH:-~/.oh-my-zsh}
+REPO=${REPO:-ohmyzsh/ohmyzsh}
+REMOTE=${REMOTE:-https://github.com/${REPO}.git}
+BRANCH=${BRANCH:-master}
 ```
-https://gitee.com/mirrors/oh-my-zsh/blob/master/tools/install.sh
+改为：
+```
+REPO=${REPO:-mirrors/oh-my-zsh}
+REMOTE=${REMOTE:-https://gitee.com/${REPO}.git}
 ```
 添加可执行权限：
 ```shell
