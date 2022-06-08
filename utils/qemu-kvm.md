@@ -29,11 +29,11 @@
 3. 安装完成后，以后每次启动可以去掉`-cdrom`参数。
 
 ## 快照管理
-在虚拟机关机状态下，使用`qemu-img snapshot`进行快照管理，可以使用`qemu-img snapshot --help`查看帮助，注意只有qcow2才能使用快照功能。
-    1. `qemu-img snapshot -c Tag disk_image`在`disk_image`文件中创建名为`Tag`的快照。
-    2. `qemu-img snapshot -l disk_image`查看`disk_image`文件中的快照信息。
-    3. `qemu-img snapshot -a Tag disk_image`将`disk_image`还原到`Tag`时。
-    4. `qemu-img snapshot -d Tag disk_image`将`disk_image`文件中的`Tag`快照删除。
+在虚拟机关机状态下，使用`qemu-img snapshot`进行快照管理，可以使用`qemu-img snapshot --help`查看帮助，注意只有qcow2才能使用快照功能。<br>
+    1. `qemu-img snapshot -c Tag disk_image`在`disk_image`文件中创建名为`Tag`的快照。<br>
+    2. `qemu-img snapshot -l disk_image`查看`disk_image`文件中的快照信息。<br>
+    3. `qemu-img snapshot -a Tag disk_image`将`disk_image`还原到`Tag`时。<br>
+    4. `qemu-img snapshot -d Tag disk_image`将`disk_image`文件中的`Tag`快照删除。<br>
 
 ## 硬盘镜像扩展
 1. 当硬盘镜像不够使用时，可以对其进行扩展：`qemu-img resize disk_image +/-10G`。
