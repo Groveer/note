@@ -133,7 +133,7 @@ Plug 'ryanoasis/vim-devicons'                       "显示文件类型图标，
 call plug#end()
 
 set nocompatible    " 关闭兼容模式
-syntax enable       " 语法高亮
+syntax on       " 语法高亮
 " 开启文件类型侦测
 filetype on
 " 根据侦测到的不同类型加载对应的插件
@@ -188,6 +188,9 @@ set cursorline
 " highlight CursorLine   cterm=NONE ctermbg=gray ctermfg=black guibg=NONE guifg=NONE
 " highlight CocHighlightText cterm=NONE ctermbg=yellow ctermfg=black guibg=NONE guifg=NONE
 
+" 高亮多余的空白字符及Tab
+highlight RedundantSpaces ctermbg=red guibg=red
+match RedundantSpaces /\s\+$\| \+\ze\t\|\t/
 
 " 插件窗口的宽度，如TagList,NERD_tree等，自己设置
 let s:PlugWinSize = 28
@@ -208,6 +211,8 @@ vnoremap <silent> # :call VisualSearch('b')<CR>
 nn <C-J> :bn<cr>
 nn <C-K> :bp<cr>
 nn <C-H> :b1<cr>
+
+let mapleader=','
 
 "----------------------------------------------------
 "                    indentLine
