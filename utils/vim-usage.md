@@ -130,6 +130,7 @@ Plug 'vim-airline/vim-airline'                      "友好的显示状态栏
 Plug 'peterhoeg/vim-qml'                            "qml高亮
 Plug 'octol/vim-cpp-enhanced-highlight'             "cpp高亮
 Plug 'ryanoasis/vim-devicons'                       "显示文件类型图标，系统需安装图标字体：yay -S nerd-fonts-complete
+Plug 'junegunn/fzf.vim'                             "文件搜索工具，yay -S fzf the_silver_searcher
 call plug#end()
 
 set nocompatible    " 关闭兼容模式
@@ -174,7 +175,7 @@ set tabstop=4
 " 不使用beep或flash
 set vb t_vb=
 "set background=dark
-"colorscheme monokai
+colorscheme elflord
 " 启用256色
 set t_Co=256
 set t_ut=n
@@ -231,7 +232,16 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 " 使用PlugWinSize
 let NERDTreeWinSize = s:PlugWinSize
 " 使用 Ctrl+n 快捷键打开或关闭 NERDTree
-nnoremap <C-n> :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTreeToggle<CR>
+
+
+"----------------------------------------------------
+"                    fzf
+"----------------------------------------------------
+"fzf快捷键 ctrl+p
+nnoremap <silent> <C-p> :Files<CR>
+nnoremap <silent> <C-k> :Buffers<CR>
+nnoremap <silent> <C-a> :Ag<CR>
 
 "----------------------------------------------------
 "                    coc.nvim
