@@ -242,6 +242,14 @@ nnoremap <C-n> :NERDTreeToggle<CR>
 nnoremap <silent> <C-p> :Files<CR>
 nnoremap <silent> <C-k> :Buffers<CR>
 nnoremap <silent> <C-a> :Ag<CR>
+" 若需要设置过滤路径：
+" yay -S fd
+" vim ~/.zshrc
+" export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+" vim ~/.config/fd/ignore
+" 输入要过滤的文件或文件夹，如：
+" build
+" build-Release
 
 "----------------------------------------------------
 "                    coc.nvim
