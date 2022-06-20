@@ -21,6 +21,8 @@ filetype plugin on  " 文件类型插件
 filetype indent on
 set autoindent
 autocmd BufEnter * :syntax sync fromstart
+" 设置背景透明
+hi Normal ctermfg=252 ctermbg=none
 
 set nu              " 显示行号
 set showcmd         " 显示命令
@@ -54,8 +56,7 @@ set shiftwidth=4
 set tabstop=4
 " 不使用beep或flash
 set vb t_vb=
-"set background=dark
-"colorscheme monokai
+"colorscheme elflord
 " 启用256色
 set t_Co=256
 set t_ut=n
