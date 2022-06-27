@@ -115,7 +115,11 @@ yay -S bear
 ```
 每次使用`bear make`生成配置文件
 3. 安装插件管理，强烈推荐`vim-plug`
+```shell
+yay -S vim-plug
 ```
+或
+```shell
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
@@ -143,6 +147,8 @@ filetype plugin on  " 文件类型插件
 filetype indent on
 set autoindent
 autocmd BufEnter * :syntax sync fromstart
+" 设置背景透明
+hi Normal ctermfg=252 ctermbg=none
 
 set nu              " 显示行号
 set showcmd         " 显示命令
@@ -176,7 +182,7 @@ set tabstop=4
 " 不使用beep或flash
 set vb t_vb=
 "set background=dark
-colorscheme elflord
+"colorscheme elflord
 " 启用256色
 set t_Co=256
 set t_ut=n
